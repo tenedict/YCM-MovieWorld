@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <h1 class='text-center my-3'>리뷰 작성하기</h1>
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+        <form action="{% url 'reviews:create' %}" method='POST'>
+            {% csrf_token %}
+            {% bootstrap_form review_form %}
+            <input class="btn btn-primary" type="submit" value="리뷰 작성">
+        </form>
+        </div>
+    </div>
+{% endblock content %}
