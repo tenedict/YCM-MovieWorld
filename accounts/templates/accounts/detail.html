@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-<h1 class='text-center my-3'>회원상세 정보</h1>
-<h3>{{ user.username }}님의 정보입니다.</h3>
+  <h1 class='text-center my-3'>회원상세 정보</h1>
+  <h3>{{ user.username }}님의 정보입니다.</h3>
 
-<P>{{ user.full_name }}</P>
-<P>{{ user.email }}</P>
-<P>{{ user.last_login }}</P>
+  <p>{{ user.full_name }}</p>
+  <p>{{ user.email }}</p>
+  <p>{{ user.last_login }}</p>
 
-{% if is_staff  %}
+  {% if is_staff %}
     <p>스탭입니당!</p>
-{% else %}
+  {% else %}
     <p>일반회원입니당!</p>
-{% endif %}
+  {% endif %}
 
-
+  <a class="btn btn-success" href="{% url 'accounts:update' %}" role="button">프로필 수정</a>
 {% endblock content %}

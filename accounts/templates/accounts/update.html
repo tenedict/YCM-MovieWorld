@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class='text-center my-3'>회원 정보 수정</h1>
+  <div class="card shadow p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+      <form action="{% url 'accounts:update' %}" method='POST'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-primary" type="submit" value="수정">
+        <a class="btn btn-primary" href="{% url 'accounts:change_password' %}" role="button">비밀번호 변경</a>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
