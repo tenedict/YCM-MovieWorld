@@ -14,7 +14,7 @@
         <tr>
           <th scope="row">{{ form.pk }}</th>
           <td>
-            <a href="#">{{ form.username }}</a>
+            <a href="{% url 'accounts:detail' form.pk %}">{{ form.username }}</a>
           </td>
         </tr>
       {% endfor %}

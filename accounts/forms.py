@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
 class CustomUserCreationForm(UserCreationForm):
+    error_messages = {
+        "password_mismatch": ("두개의 비밀번호가 일치하지 않아요!"),
+    }
     password1 = forms.CharField(
         label=("비밀번호"),
         strip=False,
@@ -17,7 +20,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
     class Meta:
         model = get_user_model()
-        fields = ('username',)
+        fields = ('username','last_name', 'first_name', 'email',)
         help_texts = {
             'username' : "",
         }
