@@ -13,6 +13,8 @@
   {% else %}
     <p>일반회원입니당!</p>
   {% endif %}
-
-  <a class="btn btn-success" href="{% url 'accounts:update' %}" role="button">프로필 수정</a>
+  <div class='d-flex justify-content-between'>
+    <a class="btn btn-success" href="{% url 'accounts:update' %}" role="button">프로필 수정</a>
+    <a class="btn btn-danger" href="{% url 'accounts:delete' %}" role="button">계정 탈퇴</a>
+  </div>
 {% endblock content %}
