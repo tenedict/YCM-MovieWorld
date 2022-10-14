@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
@@ -39,6 +40,10 @@ def login(request):
 
     return render(request, 'accounts/login.html', context)
 
+def logout(request):
+    auth_logout(request)
+    return redirect('accounts:index')
+
 
 def index(request):
     forms = get_user_model().objects.all()
@@ -49,7 +54,7 @@ def index(request):
 
 @login_required
 def detail(request, pk):
-    if request.user.pk == pk:
+    if request.user.pk == pk: # 로그인한 계정과 회원정보 계정이 같을 경우
         user = get_user_model().objects.get(pk=pk)
         context = {
             'user' : user
@@ -91,3 +96,10 @@ def change_password(request):
     }
 
     return render(request, 'accounts/password.html', context)
+
+#계정 삭제
+@login_required
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect('accounts:index')
