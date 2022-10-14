@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class='text-center my-3'>리뷰 수정하기</h1>
+  <div class="card shadow p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+      <form action="{% url 'reviews:update' review.pk %}" method='POST'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-primary" type="submit" value="리뷰 수정">
+      </form>
+    </div>
+  </div>
+{% endblock content %}

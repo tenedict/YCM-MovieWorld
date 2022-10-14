@@ -2,28 +2,32 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-    <h1 class='text-center my-3'>리뷰 목록</h1>
-    <table class="table">
-        <thead class='talbe-dark'>
-            <tr>
-                <th scope="col">pk</th>
-                <th scope="col">리뷰제목</th>
-                <th scope="col">영화제목</th>
-                <th scope="col">별점</th>
-                <th scope="col">작성시간</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for review in reviews %}
-                <tr>
-                    <th scope="row">{{ review.pk }}</th>
-                    <td>
-                    <a href="#">{{ review.title }}</a>
-                    </td>
-                    <td scope="row">{{ review.movie_name }}</td>
-                    <td scope="row">{{ review.grade }}</td>
-                    <td scope="row">{{ review.created_at }}</td>
-                </tr>
-            {% endfor %}
-          </tbody>
+  <h1 class='text-center my-3'>리뷰 목록</h1>
+  {% if request.user.is_authenticated %}
+    <a class="btn btn-primary w-100 my-3" href="{% url 'reviews:create' %}" role="button">글 작성</a>
+  {% endif %}
+  <table class="table">
+    <thead class='talbe-dark'>
+      <tr>
+        <th scope="col">pk</th>
+        <th scope="col">리뷰제목</th>
+        <th scope="col">영화제목</th>
+        <th scope="col">별점</th>
+        <th scope="col">작성시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+        <tr>
+          <th scope="row">{{ review.pk }}</th>
+          <td>
+            <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+          </td>
+          <td scope="row">{{ review.movie_name }}</td>
+          <td scope="row">{{ review.grade }}</td>
+          <td scope="row">{{ review.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}
