@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1 class='text-center my-3'>회원가입</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <form action="" method="POST">
+  <div class="card shadow p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+      <form action="" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% bootstrap_form form %}
         <input type="submit" value="가입">
-    </form>
-</body>
+      </div>
+    </div>
+  </form>
 
-</html>
+{% endblock content %}
