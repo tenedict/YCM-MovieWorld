@@ -5,4 +5,4 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        exclude = ('created_at','updated_at')
+        exclude = ('created_at','updated_at', 'writer', )
