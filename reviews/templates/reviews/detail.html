@@ -18,8 +18,8 @@
   </div>
 
   <div class="d-grid gap-2">
-    <a class="btn btn-success" href="#" role="button">수정</a>
-    <form action="" method='POST'>
+    <a class="btn btn-success" href="{% url 'reviews:update' review.pk %}" role="button">수정</a>
+    <form action="{% url 'reviews:delete' review.pk %}" method='POST'>
       {% csrf_token %}
       <input class="btn btn-danger w-100" type="submit" value="삭제">
     </form>
