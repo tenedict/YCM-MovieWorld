@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  {{ user }}
+  <table class="table">
+    <thead class='talbe-dark'>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">사용자</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for form in forms %}
+        <tr>
+          <th scope="row">{{ form.pk }}</th>
+          <td>
+            <a href="#">{{ form.username }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
