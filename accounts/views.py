@@ -44,13 +44,16 @@ def logout(request):
     auth_logout(request)
     return redirect('accounts:index')
 
-
+@login_required
 def index(request):
-    forms = get_user_model().objects.all()
-    context = {
-        'forms' : forms,
-    }
-    return render(request, "accounts/index.html", context)
+    if request.user.is_superuser:
+        forms = get_user_model().objects.all()
+        context = {
+            'forms' : forms,
+        }
+        return render(request, "accounts/index.html", context)
+    else:
+        return render(request, 'no_access.html')
 
 @login_required
 def detail(request, pk):
