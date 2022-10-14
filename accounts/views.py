@@ -11,8 +11,9 @@ def signup(request):
         if form.is_valid():
             form.save()
             return redirect('accounts:index')
-    form = CustomUserCreationForm()
 
+    else:
+        form = CustomUserCreationForm()
     context = {
         'form': form
     }
@@ -41,3 +42,10 @@ def index(request):
         'forms' : forms,
     }
     return render(request, "accounts/index.html", context)
+
+def detail(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    context = {
+        'user' : user
+    }
+    return render(request, 'accounts/detail.html', context)
